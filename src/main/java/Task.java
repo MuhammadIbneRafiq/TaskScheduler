@@ -2,6 +2,10 @@ import java.util.Objects;
 
 /**
  * Class that defines a task by its id, priority and arrival time.
+ * 
+ * Priority: Higher numbers indicate higher priority (e.g., priority 5 > priority 2)
+ * Length: Task execution time in milliseconds (must be non-negative)
+ * ArrivalTime: When the task becomes available for scheduling (must be non-negative)
  *
  * @author Ferit Ismailov
  * @date 20.05.2025
@@ -15,10 +19,10 @@ public class Task implements Comparable<Task> {
     /**
      * Basic constructor for the Task class.
      * 
-     * @param id          - id of the task
-     * @param priority    - priority of the task
-     * @param length      - length of the task in milliseconds
-     * @param arrivalTime - arrival time of the task (in milliseconds since start)
+     * @param id          - id of the task (must be non-negative)
+     * @param priority    - priority of the task (higher numbers = higher priority, must be non-negative)
+     * @param length      - length of the task in milliseconds (must be non-negative)
+     * @param arrivalTime - arrival time of the task (in milliseconds since start, must be non-negative)
      */
     public Task(int id, int priority, long length, int arrivalTime) {
         this.id = id;

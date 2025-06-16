@@ -126,10 +126,10 @@ public class RoundRobinStrategy implements Scheduler {
     private int executeTaskFromQueue(Queue<TaskState> readyQueue, List<ScheduledTask> result, 
                                      Processor processor, int currentTime) {
         TaskState currentTask = readyQueue.poll();
-        long startTime = currentTime;
+        int startTime = currentTime;
         long executionTime = Math.min(quantum, currentTask.remainingTime);
         
-        currentTime += executionTime;
+        currentTime += (int) executionTime;
         currentTask.remainingTime -= executionTime;
         
         ScheduledTask newScheduledTask = createScheduledTask(currentTask.task, processor, 
