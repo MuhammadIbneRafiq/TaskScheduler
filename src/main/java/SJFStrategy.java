@@ -5,7 +5,7 @@ import java.util.PriorityQueue;
 /**
  * Class for the Shortest Job First Strategy.
  * <!--//# BEGIN TODO: Name, student ID, and date-->
- * <p><b>Muhammad Rafiq, 1924214, 16th June 2025</b></p>
+ * <p><b>Muhammad Rafiq, 1924214, 16th June 2025 </b></p>
  * <!--//# END TODO-->
  */
 public class SJFStrategy implements Scheduler {
