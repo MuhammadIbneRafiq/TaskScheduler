@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p><b>Muhammad Rafiq, 1924214, 16th June 2025</b></p>
  * <!--//# END TODO-->
  */
-public class FCFSstrategy implements Scheduler {
+public class FCFSStrategy implements Scheduler {
 
     /**
      * A method to schedule a list of tasks on a list of tasks based on FCFS.

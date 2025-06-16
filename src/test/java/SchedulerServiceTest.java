@@ -27,13 +27,13 @@ public class SchedulerServiceTest {
     // ===== FCFS STRATEGY TESTS =====
     
     @Test
-    void testFCFSstrategy_BasicOrdering() {
+    void testFCFSStrategy_BasicOrdering() {
         List<Task> tasks = List.of(
             new Task(1, 1, 100, 0),
             new Task(2, 1, 200, 50),
             new Task(3, 1, 150, 100)
         );
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(3, result.size());
@@ -53,13 +53,13 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSstrategy_MultipleProcessors() {
+    void testFCFSStrategy_MultipleProcessors() {
         List<Task> tasks = List.of(
             new Task(1, 1, 100, 0),
             new Task(2, 1, 200, 0),
             new Task(3, 1, 150, 0)
         );
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 2);
         
         assertEquals(3, result.size());
@@ -74,12 +74,12 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSstrategy_ZeroLengthTask() {
+    void testFCFSStrategy_ZeroLengthTask() {
         List<Task> tasks = List.of(
             new Task(1, 1, 0, 0),
             new Task(2, 1, 100, 0)
         );
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(2, result.size());
@@ -89,18 +89,18 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSstrategy_EmptyTaskList() {
+    void testFCFSStrategy_EmptyTaskList() {
         List<Task> tasks = new ArrayList<>();
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(0, result.size());
     }
     
     @Test
-    void testFCFSstrategy_SingleTask() {
+    void testFCFSStrategy_SingleTask() {
         List<Task> tasks = List.of(new Task(1, 1, 500, 100));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(1, result.size());
@@ -110,14 +110,14 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSstrategy_TasksWithGaps() {
+    void testFCFSStrategy_TasksWithGaps() {
         // Test with tasks that arrive with significant gaps
         List<Task> tasks = List.of(
             new Task(1, 1, 50, 0),
             new Task(2, 1, 50, 200),
             new Task(3, 1, 50, 300)
         );
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(3, result.size());
@@ -530,21 +530,21 @@ public class SchedulerServiceTest {
     
     @Test
     void testSchedulerService_NullTasksList() {
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, null, 1));
     }
     
     @Test
     void testSchedulerService_ZeroProcessors() {
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, sampleTasks, 0));
     }
     
     @Test
     void testSchedulerService_NegativeProcessors() {
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, sampleTasks, -1));
     }
@@ -556,7 +556,7 @@ public class SchedulerServiceTest {
         tasksWithNull.add(null);
         tasksWithNull.add(new Task(3, 1, 100, 0));
         
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, tasksWithNull, 1));
     }
@@ -564,7 +564,7 @@ public class SchedulerServiceTest {
     @Test
     void testSchedulerService_NegativeTaskId() {
         List<Task> tasks = List.of(new Task(-1, 1, 100, 0));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, tasks, 1));
     }
@@ -572,7 +572,7 @@ public class SchedulerServiceTest {
     @Test
     void testSchedulerService_NegativeTaskLength() {
         List<Task> tasks = List.of(new Task(1, 1, -50, 0));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, tasks, 1));
     }
@@ -580,7 +580,7 @@ public class SchedulerServiceTest {
     @Test
     void testSchedulerService_NegativeArrivalTime() {
         List<Task> tasks = List.of(new Task(1, 1, 100, -10));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, tasks, 1));
     }
@@ -588,7 +588,7 @@ public class SchedulerServiceTest {
     @Test
     void testSchedulerService_NegativePriority() {
         List<Task> tasks = List.of(new Task(1, -1, 100, 0));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         assertThrows(IllegalArgumentException.class, () -> 
                 SchedulerService.runScheduler(scheduler, tasks, 1));
     }
@@ -605,7 +605,7 @@ public class SchedulerServiceTest {
         
         // Test non-preemptive strategies first
         Scheduler[] nonPreemptiveStrategies = {
-            new FCFSstrategy(),
+            new FCFSStrategy(),
             new SJFStrategy()
         };
         
@@ -642,7 +642,7 @@ public class SchedulerServiceTest {
         
         // Test FCFS
         List<ScheduledTask> fcfsResult = 
-                SchedulerService.runScheduler(new FCFSstrategy(), tasks, 1);
+                SchedulerService.runScheduler(new FCFSStrategy(), tasks, 1);
         assertEquals(4, fcfsResult.size());
         
         // Test SJF
@@ -672,7 +672,7 @@ public class SchedulerServiceTest {
         List<Task> tasks = List.of(zeroTask);
         
         Scheduler[] strategies = {
-            new FCFSstrategy(),
+            new FCFSStrategy(),
             new SJFStrategy(),
             new PriorityStrategy(),
             new RoundRobinStrategy(100)
@@ -697,7 +697,7 @@ public class SchedulerServiceTest {
             new Task(Integer.MAX_VALUE, Integer.MAX_VALUE, Long.MAX_VALUE / 2, Integer.MAX_VALUE)
         );
         
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(1, result.size());
@@ -708,7 +708,7 @@ public class SchedulerServiceTest {
     void testSchedulerService_ValidBoundaryValues() {
         // Test with minimum valid values
         List<Task> tasks = List.of(new Task(0, 0, 0, 0));
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(1, result.size());
@@ -729,7 +729,7 @@ public class SchedulerServiceTest {
             new Task(2, 1, 150, 100)
         );
         
-        Scheduler scheduler = new FCFSstrategy();
+        Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
         
         assertEquals(3, result.size());
@@ -766,7 +766,7 @@ public class SchedulerServiceTest {
         }
         
         // Test non-preemptive strategies with multiple processors
-        Scheduler[] strategies = {new FCFSstrategy(), new SJFStrategy()};
+        Scheduler[] strategies = {new FCFSStrategy(), new SJFStrategy()};
         
         for (Scheduler strategy : strategies) {
             List<ScheduledTask> result = SchedulerService.runScheduler(strategy, tasks, 5);
@@ -805,7 +805,7 @@ public class SchedulerServiceTest {
         );
         
         Scheduler[] strategies = {
-            new FCFSstrategy(),
+            new FCFSStrategy(),
             new SJFStrategy(),
             new PriorityStrategy(),
             new RoundRobinStrategy(50)

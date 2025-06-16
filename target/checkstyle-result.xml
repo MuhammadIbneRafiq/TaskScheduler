@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="10.12.4">
+<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\FCFSStrategy.java">
+<error line="10" column="14" severity="error" message="Abbreviation in name &apos;FCFSStrategy&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+</file>
+<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\test\java\SchedulerServiceTest.java">
+<error line="30" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_BasicOrdering&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+<error line="56" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_MultipleProcessors&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+<error line="77" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_ZeroLengthTask&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+<error line="92" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_EmptyTaskList&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+<error line="101" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_SingleTask&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+<error line="113" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_TasksWithGaps&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
+</file>
 </checkstyle>
