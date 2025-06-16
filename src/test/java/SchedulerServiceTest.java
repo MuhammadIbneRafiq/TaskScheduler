@@ -397,8 +397,6 @@ public class SchedulerServiceTest {
         assertEquals(150, result.get(1).getStartTime());
         assertEquals(350, result.get(1).getEndTime());
     }
-
-    // ===== ROUND ROBIN STRATEGY TESTS =====
     
     @Test
     void testRoundRobinStrategy_SingleTask_WithinQuantum() {
