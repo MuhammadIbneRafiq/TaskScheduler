@@ -7,8 +7,8 @@ import java.util.List;
  * @author Ferit Ismailov
  * @date 20.05.2025
  * 
- * @version 1.0
- * TODO: Edit the signature and add robustness checks. Increment version.
+ * @version 1.1
+ * Robustness checks implemented and signature updated.
  * 
  * <!--//# BEGIN TODO: Name, student ID, and date-->
  * <p><b>Muhammad Rafiq, 1924214, 16th June 2025</b></p>
@@ -38,6 +38,13 @@ public class SchedulerService {
         return strategy.schedule(tasks, processors);
     }
     
+    /**
+     * Validates the basic input parameters.
+     * @param strategy the scheduling strategy
+     * @param tasks the list of tasks
+     * @param nrProcessors number of processors
+     * @throws IllegalArgumentException if any parameter is invalid
+     */
     private static void validateInputs(Scheduler strategy, List<Task> tasks, int nrProcessors) {
         if (strategy == null) {
             throw new IllegalArgumentException("Strategy cannot be null");
@@ -51,6 +58,11 @@ public class SchedulerService {
         }
     }
     
+    /**
+     * Validates all tasks in the list.
+     * @param tasks list of tasks to validate
+     * @throws IllegalArgumentException if any task is invalid
+     */
     private static void validateTasks(List<Task> tasks) {
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
@@ -58,6 +70,12 @@ public class SchedulerService {
         }
     }
     
+    /**
+     * Validates a single task.
+     * @param task the task to validate
+     * @param index the index of the task in the list
+     * @throws IllegalArgumentException if the task is invalid
+     */
     private static void validateSingleTask(Task task, int index) {
         if (task == null) {
             throw new IllegalArgumentException("Task at index " + index + " is null");
@@ -65,6 +83,11 @@ public class SchedulerService {
         validateTaskFields(task);
     }
     
+    /**
+     * Validates all fields of a task.
+     * @param task the task to validate
+     * @throws IllegalArgumentException if any field is invalid
+     */
     private static void validateTaskFields(Task task) {
         if (task.getArrivalTime() < 0) {
             throw new IllegalArgumentException("Task " + task.getId() 
@@ -84,6 +107,11 @@ public class SchedulerService {
         }
     }
     
+    /**
+     * Creates the specified number of processors.
+     * @param nrProcessors number of processors to create
+     * @return list of processors
+     */
     private static List<Processor> createProcessors(int nrProcessors) {
         List<Processor> processors = new ArrayList<>();
         for (int i = 0; i < nrProcessors; i++) {

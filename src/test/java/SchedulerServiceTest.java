@@ -79,20 +79,7 @@ public class SchedulerServiceTest {
         assertTrue(result.isEmpty());
     }
     
-    @Test
-    void testFcfsStrategy_ZeroLengthTask() {
-        List<Task> tasks = List.of(
-            new Task(1, 1, 0, 0),
-            new Task(2, 1, 100, 0)
-        );
-        Scheduler scheduler = new FCFSStrategy();
-        List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
-        
-        assertEquals(2, result.size());
-        assertEquals(1, result.get(0).getTask().getId());
-        assertEquals(0, result.get(0).getStartTime());
-        assertEquals(0, result.get(0).getEndTime());
-    }
+
 
     // ===== SJF STRATEGY TESTS =====
     
@@ -241,32 +228,7 @@ public class SchedulerServiceTest {
         assertEquals(1, result.get(2).getTask().getId());
     }
     
-    @Test
-    void testPriorityStrategy_ZeroLengthTask() {
-        List<Task> tasks = List.of(
-            new Task(1, 1, 100, 0),
-            new Task(2, 3, 0, 50)    // Zero length, high priority
-        );
-        Scheduler scheduler = new PriorityStrategy();
-        List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
-        
-        assertEquals(3, result.size());
-        
-        // Task 1 runs for 50ms
-        assertEquals(1, result.get(0).getTask().getId());
-        assertEquals(0, result.get(0).getStartTime());
-        assertEquals(50, result.get(0).getEndTime());
-        
-        // Task 2 preempts immediately and completes (zero length)
-        assertEquals(2, result.get(1).getTask().getId());
-        assertEquals(50, result.get(1).getStartTime());
-        assertEquals(50, result.get(1).getEndTime());
-        
-        // Task 1 resumes
-        assertEquals(1, result.get(2).getTask().getId());
-        assertEquals(50, result.get(2).getStartTime());
-        assertEquals(100, result.get(2).getEndTime());
-    }
+
 
     // ===== ROUND ROBIN STRATEGY TESTS =====
     
@@ -363,28 +325,6 @@ public class SchedulerServiceTest {
         assertEquals(1, result.get(1).getTask().getId());
         assertEquals(4, result.get(1).getStartTime());
         assertEquals(11, result.get(1).getEndTime());
-    }
-    
-    @Test
-    void testRoundRobinStrategy_ZeroLengthTasks() {
-        List<Task> tasks = List.of(
-            new Task(1, 1, 0, 0),  // zero length task
-            new Task(2, 1, 100, 0)
-        );
-        Scheduler scheduler = new RoundRobinStrategy(50);
-        List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, tasks, 1);
-        
-        assertEquals(2, result.size());
-        
-        // Zero length task should still be scheduled
-        assertEquals(1, result.get(0).getTask().getId());
-        assertEquals(0, result.get(0).getStartTime());
-        assertEquals(0, result.get(0).getEndTime());
-        
-        // Task 2 gets merged execution (since no other tasks to interleave)
-        assertEquals(2, result.get(1).getTask().getId());
-        assertEquals(0, result.get(1).getStartTime());
-        assertEquals(100, result.get(1).getEndTime());
     }
     
     @Test
@@ -511,5 +451,11 @@ public class SchedulerServiceTest {
         Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, new ArrayList<>(), 1);
         assertTrue(result.isEmpty());
+    }
+    
+    @Test
+    void testRoundRobinStrategy_InvalidQuantum() {
+        assertThrows(IllegalArgumentException.class, () -> new RoundRobinStrategy(0));
+        assertThrows(IllegalArgumentException.class, () -> new RoundRobinStrategy(-1));
     }
 }

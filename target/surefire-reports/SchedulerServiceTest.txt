@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: SchedulerServiceTest
 -------------------------------------------------------------------------------
-Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.761 s -- in SchedulerServiceTest
+Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.966 s -- in SchedulerServiceTest

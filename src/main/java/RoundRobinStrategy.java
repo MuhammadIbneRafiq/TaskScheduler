@@ -21,6 +21,9 @@ public class RoundRobinStrategy implements Scheduler {
      * @throws IllegalArgumentException if quantum <= 0
      */
     public RoundRobinStrategy(long quantum) {
+        if (quantum <= 0) {
+            throw new IllegalArgumentException("Quantum must be positive, got: " + quantum);
+        }
         this.quantum = quantum;
     }
 
@@ -55,6 +58,11 @@ public class RoundRobinStrategy implements Scheduler {
         return executeRoundRobinScheduling(sortedTasks, processors.get(0));
     }
     
+    /**
+     * Validates that exactly one processor is provided.
+     * @param processors list of processors
+     * @throws IllegalArgumentException if not exactly one processor
+     */
     private void validatePreconditions(List<Processor> processors) {
         if (processors.size() != 1) {
             throw new IllegalArgumentException(
@@ -62,6 +70,12 @@ public class RoundRobinStrategy implements Scheduler {
         }
     }
     
+    /**
+     * Executes the main round robin scheduling algorithm.
+     * @param sortedTasks tasks sorted by arrival time
+     * @param processor the single processor to use
+     * @return list of scheduled tasks
+     */
     private List<ScheduledTask> executeRoundRobinScheduling(List<Task> sortedTasks, 
                                                             Processor processor) {
         List<ScheduledTask> result = new ArrayList<>();
@@ -82,6 +96,14 @@ public class RoundRobinStrategy implements Scheduler {
         return result;
     }
     
+    /**
+     * Adds newly arrived tasks to the ready queue.
+     * @param sortedTasks tasks sorted by arrival time
+     * @param readyQueue queue of ready tasks
+     * @param currentTime current simulation time
+     * @param taskIndex current task index
+     * @return updated task index
+     */
     private int addNewlyArrivedTasks(List<Task> sortedTasks, Queue<TaskState> readyQueue, 
                                      int currentTime, int taskIndex) {
         while (taskIndex < sortedTasks.size() 
@@ -93,6 +115,14 @@ public class RoundRobinStrategy implements Scheduler {
         return taskIndex;
     }
     
+    /**
+     * Executes a task from the ready queue for one quantum.
+     * @param readyQueue queue of ready tasks
+     * @param result list of scheduled tasks
+     * @param processor the processor
+     * @param currentTime current simulation time
+     * @return updated current time
+     */
     private int executeTaskFromQueue(Queue<TaskState> readyQueue, List<ScheduledTask> result, 
                                      Processor processor, int currentTime) {
         TaskState currentTask = readyQueue.poll();
@@ -113,11 +143,25 @@ public class RoundRobinStrategy implements Scheduler {
         return currentTime;
     }
     
+    /**
+     * Creates a scheduled task for the given parameters.
+     * @param task the task
+     * @param processor the processor
+     * @param startTime start time
+     * @param endTime end time
+     * @return new ScheduledTask
+     */
     private ScheduledTask createScheduledTask(Task task, Processor processor, 
                                               long startTime, int endTime) {
         return new ScheduledTask(task, processor.getId(), (int) startTime, endTime);
     }
     
+    /**
+     * Adds a scheduled task to the result, merging with previous if possible.
+     * @param result list of scheduled tasks
+     * @param newTask new task to add
+     * @param startTime start time of the new task
+     */
     private void addOrMergeScheduledTask(List<ScheduledTask> result, ScheduledTask newTask, 
                                          long startTime) {
         if (!result.isEmpty()) {
@@ -131,17 +175,37 @@ public class RoundRobinStrategy implements Scheduler {
         result.add(newTask);
     }
     
+    /**
+     * Checks if a task can be merged with the previous execution.
+     * @param lastScheduled last scheduled task
+     * @param newTask new task
+     * @param startTime start time of new task
+     * @return true if tasks can be merged
+     */
     private boolean canMergeWithPrevious(ScheduledTask lastScheduled, ScheduledTask newTask, 
                                          long startTime) {
         return lastScheduled.getTask().equals(newTask.getTask()) 
                && lastScheduled.getEndTime() == startTime;
     }
     
+    /**
+     * Creates a merged task from two consecutive executions.
+     * @param lastScheduled previous execution
+     * @param newTask current execution
+     * @return merged ScheduledTask
+     */
     private ScheduledTask createMergedTask(ScheduledTask lastScheduled, ScheduledTask newTask) {
         return new ScheduledTask(newTask.getTask(), newTask.getProcessorId(),
                                  lastScheduled.getStartTime(), newTask.getEndTime());
     }
     
+    /**
+     * Advances time to the next task arrival.
+     * @param sortedTasks tasks sorted by arrival time
+     * @param taskIndex current task index
+     * @param currentTime current simulation time
+     * @return updated current time
+     */
     private int advanceToNextArrival(List<Task> sortedTasks, int taskIndex, int currentTime) {
         if (taskIndex < sortedTasks.size()) {
             return Math.max(currentTime, sortedTasks.get(taskIndex).getArrivalTime());
@@ -149,6 +213,9 @@ public class RoundRobinStrategy implements Scheduler {
         return currentTime;
     }
     
+    /**
+     * Internal class to track task state in the ready queue.
+     */
     private static class TaskState {
         final Task task;
         long remainingTime;

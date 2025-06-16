@@ -61,6 +61,11 @@ public class SJFStrategy implements Scheduler {
         return result;
     }
     
+    /**
+     * Finds the processor that becomes available earliest.
+     * @param processorFreeTime array of processor free times
+     * @return index of the earliest available processor
+     */
     private int findEarliestAvailableProcessor(int[] processorFreeTime) {
         int earliest = 0;
         for (int i = 1; i < processorFreeTime.length; i++) {
@@ -71,6 +76,13 @@ public class SJFStrategy implements Scheduler {
         return earliest;
     }
     
+    /**
+     * Finds all tasks that have arrived and are not yet scheduled.
+     * @param sortedTasks list of tasks sorted by arrival time
+     * @param scheduled array tracking which tasks are scheduled
+     * @param currentTime current simulation time
+     * @return list of indices of available tasks
+     */
     private List<Integer> findAvailableTasks(List<Task> sortedTasks, boolean[] scheduled, 
                                              int currentTime) {
         List<Integer> availableTasks = new ArrayList<>();
@@ -82,6 +94,12 @@ public class SJFStrategy implements Scheduler {
         return availableTasks;
     }
     
+    /**
+     * Finds the next arrival time among unscheduled tasks.
+     * @param sortedTasks list of tasks sorted by arrival time
+     * @param scheduled array tracking which tasks are scheduled
+     * @return next arrival time
+     */
     private int findNextArrivalTime(List<Task> sortedTasks, boolean[] scheduled) {
         int nextArrival = Integer.MAX_VALUE;
         for (int i = 0; i < sortedTasks.size(); i++) {
@@ -92,6 +110,12 @@ public class SJFStrategy implements Scheduler {
         return nextArrival;
     }
     
+    /**
+     * Selects the shortest task from available tasks.
+     * @param sortedTasks list of tasks sorted by arrival time
+     * @param availableTasks list of indices of available tasks
+     * @return index of the shortest task
+     */
     private int selectShortestTask(List<Task> sortedTasks, List<Integer> availableTasks) {
         int shortestTaskIndex = availableTasks.get(0);
         for (int taskIndex : availableTasks) {
@@ -102,6 +126,12 @@ public class SJFStrategy implements Scheduler {
         return shortestTaskIndex;
     }
     
+    /**
+     * Compares two tasks to determine if the first is shorter.
+     * @param task1 first task to compare
+     * @param task2 second task to compare
+     * @return true if task1 is shorter than task2
+     */
     private boolean isTaskShorter(Task task1, Task task2) {
         if (task1.getLength() < task2.getLength()) {
             return true;
@@ -113,6 +143,13 @@ public class SJFStrategy implements Scheduler {
         return false;
     }
     
+    /**
+     * Creates a scheduled task with proper timing.
+     * @param task the task to schedule
+     * @param processorId the processor ID
+     * @param processorFreeTime when the processor becomes free
+     * @return a new ScheduledTask
+     */
     private ScheduledTask createScheduledTask(Task task, int processorId, int processorFreeTime) {
         int startTime = Math.max(task.getArrivalTime(), processorFreeTime);
         int endTime = (int) (startTime + task.getLength());

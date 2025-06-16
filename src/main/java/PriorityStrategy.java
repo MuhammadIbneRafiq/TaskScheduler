@@ -69,10 +69,21 @@ public class PriorityStrategy implements Scheduler {
         return mergeConsecutiveExecutions(result);
     }
     
+    /**
+     * Checks if all tasks have been completed.
+     * @param taskStates list of task states
+     * @return true if all tasks are completed
+     */
     private boolean allTasksCompleted(List<TaskState> taskStates) {
         return taskStates.stream().allMatch(ts -> ts.completed);
     }
     
+    /**
+     * Finds the highest priority task that has arrived and is not completed.
+     * @param taskStates list of task states
+     * @param currentTime current simulation time
+     * @return the highest priority available task, or null if none available
+     */
     private TaskState getHighestPriorityAvailableTask(List<TaskState> taskStates, int currentTime) {
         TaskState bestTask = null;
         
@@ -87,6 +98,12 @@ public class PriorityStrategy implements Scheduler {
         return bestTask;
     }
     
+    /**
+     * Compares two tasks to determine if the first has higher priority.
+     * @param task1 first task to compare
+     * @param task2 second task to compare
+     * @return true if task1 has higher priority than task2
+     */
     private boolean hasHigherPriority(Task task1, Task task2) {
         if (task1.getPriority() > task2.getPriority()) {
             return true;
@@ -98,6 +115,12 @@ public class PriorityStrategy implements Scheduler {
         }
     }
     
+    /**
+     * Finds the next arrival time among uncompleted tasks.
+     * @param taskStates list of task states
+     * @param currentTime current simulation time
+     * @return next arrival time
+     */
     private int getNextArrivalTime(List<TaskState> taskStates, int currentTime) {
         int nextArrival = Integer.MAX_VALUE;
         for (TaskState ts : taskStates) {
@@ -108,6 +131,13 @@ public class PriorityStrategy implements Scheduler {
         return nextArrival == Integer.MAX_VALUE ? currentTime + 1 : nextArrival;
     }
     
+    /**
+     * Finds the next event time (task completion or higher priority arrival).
+     * @param taskStates list of task states
+     * @param currentTask currently executing task
+     * @param currentTime current simulation time
+     * @return next event time
+     */
     private int findNextEventTime(List<TaskState> taskStates, TaskState currentTask, 
                                   int currentTime) {
         // When current task would complete
@@ -127,6 +157,11 @@ public class PriorityStrategy implements Scheduler {
         return Math.min(taskCompletionTime, nextHigherPriorityArrival);
     }
     
+    /**
+     * Merges consecutive executions of the same task into single entries.
+     * @param scheduledTasks list of scheduled tasks
+     * @return merged list of scheduled tasks
+     */
     private List<ScheduledTask> mergeConsecutiveExecutions(List<ScheduledTask> scheduledTasks) {
         if (scheduledTasks.isEmpty()) {
             return scheduledTasks;
@@ -153,6 +188,9 @@ public class PriorityStrategy implements Scheduler {
         return merged;
     }
     
+    /**
+     * Internal class to track task execution state.
+     */
     private static class TaskState {
         final Task task;
         long remainingTime;
