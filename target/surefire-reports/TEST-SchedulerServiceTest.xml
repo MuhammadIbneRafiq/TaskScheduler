@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="SchedulerServiceTest" time="0.421" tests="31" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="SchedulerServiceTest" time="0.912" tests="31" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.7.6-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\x1 yoga\AppData\Local\Temp\surefire6796348726490792828\surefirebooter-20250616161535106_3.jar C:\Users\x1 yoga\AppData\Local\Temp\surefire6796348726490792828 2025-06-16T16-15-34_296-jvmRun1 surefire-20250616161535106_1tmp surefire_0-20250616161535106_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\x1 yoga\AppData\Local\Temp\surefire2063894840208695166\surefirebooter-20250616163101093_3.jar C:\Users\x1 yoga\AppData\Local\Temp\surefire2063894840208695166 2025-06-16T16-30-58_939-jvmRun1 surefire-20250616163101093_1tmp surefire_0-20250616163101093_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\target\test-classes;C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\target\classes;C:\Users\x1 yoga\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\x1 yoga\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\x1 yoga\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\x1 yoga\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\x1 yoga\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\x1 yoga\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\x1 yoga\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\x1 yoga\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\x1 yoga\AppData\Local\Temp\surefire6796348726490792828\surefirebooter-20250616161535106_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\x1 yoga\AppData\Local\Temp\surefire2063894840208695166\surefirebooter-20250616163101093_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.7+6-LTS"/>
@@ -59,35 +59,35 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testRoundRobinStrategy_ZeroLengthTasks" classname="SchedulerServiceTest" time="0.127"/>
-  <testcase name="testSJFStrategy_TieBreaker" classname="SchedulerServiceTest" time="0.016"/>
-  <testcase name="testSchedulerService_TaskWithNegativeArrivalTime" classname="SchedulerServiceTest" time="0.054"/>
-  <testcase name="testSchedulerService_TaskWithNegativePriority" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_NegativeProcessors" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_MultipleProcessors_ThrowsException" classname="SchedulerServiceTest" time="0.041"/>
-  <testcase name="testRoundRobinStrategy_SingleTask_ExceedsQuantum" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_EmptyTaskList" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_ConsecutiveTaskMerging" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testPriorityStrategy_PriorityTieBreaker" classname="SchedulerServiceTest" time="0.007"/>
-  <testcase name="testFCFSStrategy_MultipleProcessors" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_ZeroProcessors" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_NullTasks" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testPriorityStrategy_MultipleProcessors_ThrowsException" classname="SchedulerServiceTest" time="0.006"/>
-  <testcase name="testRoundRobinStrategy_SingleTask_WithinQuantum" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_LargeQuantum" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_NullStrategy" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_TaskWithNegativeLength" classname="SchedulerServiceTest" time="0.017"/>
-  <testcase name="testSJFStrategy_WithArrivalTimes" classname="SchedulerServiceTest" time="0.005"/>
-  <testcase name="testFCFSStrategy_ZeroLengthTask" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testPriorityStrategy_ZeroLengthTask" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testSchedulerService_TaskWithNegativeId" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testFCFSStrategy_BasicOrdering" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testPriorityStrategy_NoPreemption" classname="SchedulerServiceTest" time="0.005"/>
-  <testcase name="testRoundRobinStrategy_EmptyTaskList" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_TasksWithDifferentArrivalTimes" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testFCFSStrategy_EmptyTasks" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_ComplexScenario" classname="SchedulerServiceTest" time="0.012"/>
-  <testcase name="testSJFStrategy_BasicShortest" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testRoundRobinStrategy_TwoTasks_BasicRoundRobin" classname="SchedulerServiceTest" time="0.0"/>
-  <testcase name="testPriorityStrategy_BasicPreemption" classname="SchedulerServiceTest" time="0.0"/>
+  <testcase name="testRoundRobinStrategy_ZeroLengthTasks" classname="SchedulerServiceTest" time="0.102"/>
+  <testcase name="testSJFStrategy_TieBreaker" classname="SchedulerServiceTest" time="0.007"/>
+  <testcase name="testSchedulerService_TaskWithNegativeArrivalTime" classname="SchedulerServiceTest" time="0.03"/>
+  <testcase name="testSchedulerService_TaskWithNegativePriority" classname="SchedulerServiceTest" time="0.004"/>
+  <testcase name="testSchedulerService_NegativeProcessors" classname="SchedulerServiceTest" time="0.013"/>
+  <testcase name="testRoundRobinStrategy_MultipleProcessors_ThrowsException" classname="SchedulerServiceTest" time="0.323"/>
+  <testcase name="testRoundRobinStrategy_SingleTask_ExceedsQuantum" classname="SchedulerServiceTest" time="0.006"/>
+  <testcase name="testSchedulerService_EmptyTaskList" classname="SchedulerServiceTest" time="0.014"/>
+  <testcase name="testRoundRobinStrategy_ConsecutiveTaskMerging" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testPriorityStrategy_PriorityTieBreaker" classname="SchedulerServiceTest" time="0.013"/>
+  <testcase name="testFCFSStrategy_MultipleProcessors" classname="SchedulerServiceTest" time="0.02"/>
+  <testcase name="testSchedulerService_ZeroProcessors" classname="SchedulerServiceTest" time="0.004"/>
+  <testcase name="testSchedulerService_NullTasks" classname="SchedulerServiceTest" time="0.003"/>
+  <testcase name="testPriorityStrategy_MultipleProcessors_ThrowsException" classname="SchedulerServiceTest" time="0.007"/>
+  <testcase name="testRoundRobinStrategy_SingleTask_WithinQuantum" classname="SchedulerServiceTest" time="0.003"/>
+  <testcase name="testRoundRobinStrategy_LargeQuantum" classname="SchedulerServiceTest" time="0.011"/>
+  <testcase name="testSchedulerService_NullStrategy" classname="SchedulerServiceTest" time="0.004"/>
+  <testcase name="testSchedulerService_TaskWithNegativeLength" classname="SchedulerServiceTest" time="0.065"/>
+  <testcase name="testSJFStrategy_WithArrivalTimes" classname="SchedulerServiceTest" time="0.003"/>
+  <testcase name="testFCFSStrategy_ZeroLengthTask" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testPriorityStrategy_ZeroLengthTask" classname="SchedulerServiceTest" time="0.017"/>
+  <testcase name="testSchedulerService_TaskWithNegativeId" classname="SchedulerServiceTest" time="0.005"/>
+  <testcase name="testFCFSStrategy_BasicOrdering" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testPriorityStrategy_NoPreemption" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testRoundRobinStrategy_EmptyTaskList" classname="SchedulerServiceTest" time="0.001"/>
+  <testcase name="testRoundRobinStrategy_TasksWithDifferentArrivalTimes" classname="SchedulerServiceTest" time="0.003"/>
+  <testcase name="testFCFSStrategy_EmptyTasks" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testRoundRobinStrategy_ComplexScenario" classname="SchedulerServiceTest" time="0.002"/>
+  <testcase name="testSJFStrategy_BasicShortest" classname="SchedulerServiceTest" time="0.001"/>
+  <testcase name="testRoundRobinStrategy_TwoTasks_BasicRoundRobin" classname="SchedulerServiceTest" time="0.006"/>
+  <testcase name="testPriorityStrategy_BasicPreemption" classname="SchedulerServiceTest" time="0.002"/>
 </testsuite>

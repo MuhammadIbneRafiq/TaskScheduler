@@ -16,8 +16,8 @@ public class RoundRobinStrategy implements Scheduler {
     /**
      * Constructor for Round Robin Strategy.
      * 
-     * @param quantum the time quantum allocated to each task per execution round
-     * @pre {@code quantum > 0}
+     * @param quantum the time quantum allocated to each task per execution round (must be positive)
+     * @throws IllegalArgumentException if quantum <= 0
      */
     public RoundRobinStrategy(long quantum) {
         this.quantum = quantum;
@@ -35,12 +35,9 @@ public class RoundRobinStrategy implements Scheduler {
      * 6. Consecutive executions of the same task are merged into single ScheduledTask entries
      * 
      * @param tasks incoming tasks (unsorted, may contain tasks with different arrival times)
-     * @param processors list of available processors 
-     * @pre {@code processors.size() == 1} (Round Robin operates on a single processor)
-     * @pre {@code tasks != null && processors != null}
-     * @pre {@code quantum > 0}
+     * @param processors list of available processors (must contain exactly one processor)
      * @return a list of ScheduledTasks sorted by start time, representing the execution schedule
-     * @throws IllegalArgumentException if preconditions are violated (e.g., multiple processors)
+     * @throws IllegalArgumentException if processors.size() != 1 or other preconditions are violated
      */
     @Override
     public List<ScheduledTask> schedule(List<Task> tasks, List<Processor> processors) {

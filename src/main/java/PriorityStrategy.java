@@ -12,9 +12,9 @@ public class PriorityStrategy implements Scheduler {
     /**
      * A method to schedule a list of incoming tasks taking priority into account.
      * @param tasks incoming tasks (unsorted)
-     * @param processors list of available processors
-     * @pre {@code processors.length == 1}
+     * @param processors list of available processors (must contain exactly one processor)
      * @return a list of ScheduledTasks sorted on start time based on the (Preemptive) Priority strategy.
+     * @throws IllegalArgumentException if processors.size() != 1
      */
     @Override
     public List<ScheduledTask> schedule(List<Task> tasks, List<Processor> processors) {
