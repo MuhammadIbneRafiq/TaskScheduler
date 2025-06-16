@@ -26,7 +26,7 @@ public class SchedulerServiceTest {
     // ===== FCFS STRATEGY TESTS =====
     
     @Test
-    void testFCFSStrategy_BasicOrdering() {
+    void testFcfsStrategy_BasicOrdering() {
         List<Task> tasks = List.of(
             new Task(1, 1, 100, 0),
             new Task(2, 1, 200, 50),
@@ -52,7 +52,7 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSStrategy_MultipleProcessors() {
+    void testFcfsStrategy_MultipleProcessors() {
         List<Task> tasks = List.of(
             new Task(1, 1, 100, 0),
             new Task(2, 1, 200, 0),
@@ -73,14 +73,14 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testFCFSStrategy_EmptyTasks() {
+    void testFcfsStrategy_EmptyTasks() {
         Scheduler scheduler = new FCFSStrategy();
         List<ScheduledTask> result = SchedulerService.runScheduler(scheduler, new ArrayList<>(), 1);
         assertTrue(result.isEmpty());
     }
     
     @Test
-    void testFCFSStrategy_ZeroLengthTask() {
+    void testFcfsStrategy_ZeroLengthTask() {
         List<Task> tasks = List.of(
             new Task(1, 1, 0, 0),
             new Task(2, 1, 100, 0)
@@ -97,7 +97,7 @@ public class SchedulerServiceTest {
     // ===== SJF STRATEGY TESTS =====
     
     @Test
-    void testSJFStrategy_BasicShortest() {
+    void testSjfStrategy_BasicShortest() {
         List<Task> tasks = List.of(
             new Task(1, 1, 300, 0),
             new Task(2, 1, 100, 0),
@@ -123,7 +123,7 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testSJFStrategy_WithArrivalTimes() {
+    void testSjfStrategy_WithArrivalTimes() {
         List<Task> tasks = List.of(
             new Task(1, 1, 400, 0),
             new Task(2, 1, 100, 200),
@@ -134,7 +134,7 @@ public class SchedulerServiceTest {
         
         assertEquals(3, result.size());
         
-        // Task 1 starts first (only available), then when task 3 arrives, it's shorter than remaining time
+        // Task 1 starts first (only available), then when task 3 arrives, it's shorter
         assertEquals(1, result.get(0).getTask().getId());
         assertEquals(0, result.get(0).getStartTime());
         assertEquals(400, result.get(0).getEndTime());
@@ -146,7 +146,7 @@ public class SchedulerServiceTest {
     }
     
     @Test
-    void testSJFStrategy_TieBreaker() {
+    void testSjfStrategy_TieBreaker() {
         // Same length tasks should use FCFS as tie-breaker
         List<Task> tasks = List.of(
             new Task(1, 1, 100, 10),

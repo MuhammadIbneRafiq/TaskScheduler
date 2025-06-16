@@ -28,12 +28,15 @@ public class ScheduledTask {
     public Task getTask() {
         return task;
     }
+
     public int getProcessorId() {
         return processorId;
     }
+
     public int getStartTime() {
         return startTime;
     }
+
     public int getEndTime() {
         return endTime;
     }

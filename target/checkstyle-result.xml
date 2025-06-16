@@ -2,55 +2,5 @@
 <checkstyle version="10.12.4">
 <file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\FCFSStrategy.java">
 <error line="10" column="14" severity="error" message="Abbreviation in name &apos;FCFSStrategy&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
-<error line="45" severity="error" message="Line is longer than 100 characters (found 105)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\PriorityStrategy.java">
-<error line="16" severity="error" message="Line is longer than 100 characters (found 105)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="111" severity="error" message="Line is longer than 100 characters (found 103)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="120" severity="error" message="Line is longer than 100 characters (found 110)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="140" column="69" severity="error" message="&apos;&amp;&amp;&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\RoundRobinStrategy.java">
-<error line="13" severity="error" message="First sentence should end with a period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"/>
-<error line="13" severity="error" message="First sentence of Javadoc is missing an ending period." source="com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck"/>
-<error line="40" severity="error" message="Line is longer than 100 characters (found 101)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="42" column="5" severity="error" message="Cyclomatic Complexity is 13 (max allowed is 7)." source="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"/>
-<error line="42" column="5" severity="error" message="NCSS for this method is 39 (max allowed is 30)." source="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"/>
-<error line="42" column="5" severity="error" message="NPath Complexity is 128 (max allowed is 40)." source="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"/>
-<error line="46" severity="error" message="Line is longer than 100 characters (found 102)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="67" severity="error" message="Line is longer than 100 characters (found 114)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="85" severity="error" message="Line is longer than 100 characters (found 104)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="86" column="70" severity="error" message="&apos;typecast&apos; is not followed by whitespace." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
-<error line="91" column="74" severity="error" message="&apos;&amp;&amp;&apos; should be on a new line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck"/>
-<error line="111" severity="error" message="Line is longer than 100 characters (found 101)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\ScheduledTask.java">
-<error line="31" column="5" severity="error" message="&apos;METHOD_DEF&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-<error line="34" column="5" severity="error" message="&apos;METHOD_DEF&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-<error line="37" column="5" severity="error" message="&apos;METHOD_DEF&apos; should be separated from previous line." source="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\SchedulerService.java">
-<error line="23" severity="error" message="Line is longer than 100 characters (found 115)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="26" severity="error" message="Line is longer than 100 characters (found 104)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="29" column="5" severity="error" message="Cyclomatic Complexity is 11 (max allowed is 7)." source="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"/>
-<error line="29" column="5" severity="error" message="NPath Complexity is 528 (max allowed is 40)." source="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"/>
-<error line="40" severity="error" message="Line is longer than 100 characters (found 112)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="50" severity="error" message="Line is longer than 100 characters (found 132)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="53" severity="error" message="Line is longer than 100 characters (found 121)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="59" severity="error" message="Line is longer than 100 characters (found 125)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\main\java\SJFStrategy.java">
-<error line="19" column="5" severity="error" message="Cyclomatic Complexity is 15 (max allowed is 7)." source="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"/>
-<error line="19" column="5" severity="error" message="NCSS for this method is 46 (max allowed is 30)." source="com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck"/>
-<error line="19" column="5" severity="error" message="NPath Complexity is 482 (max allowed is 40)." source="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"/>
-<error line="84" severity="error" message="Line is longer than 100 characters (found 106)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-<error line="87" severity="error" message="Line is longer than 100 characters (found 113)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
-</file>
-<file name="C:\Users\x1 yoga\Documents\q4\2irr00\TaskScheduler\TaskScheduler\src\test\java\SchedulerServiceTest.java">
-<error line="29" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_BasicOrdering&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
-<error line="55" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_MultipleProcessors&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
-<error line="76" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_EmptyTasks&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
-<error line="83" column="10" severity="error" message="Abbreviation in name &apos;testFCFSStrategy_ZeroLengthTask&apos; must contain no more than &apos;4&apos; consecutive capital letters." source="com.puppycrawl.tools.checkstyle.checks.naming.AbbreviationAsWordInNameCheck"/>
-<error line="137" severity="error" message="Line is longer than 100 characters (found 107)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
 </file>
 </checkstyle>

@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 /**
  * Class for the Shortest Job First Strategy.
@@ -35,67 +34,88 @@ public class SJFStrategy implements Scheduler {
         int scheduledCount = 0;
         
         while (scheduledCount < sortedTasks.size()) {
-            // Find the processor that becomes free earliest
-            int earliestProcessor = 0;
-            for (int i = 1; i < processors.size(); i++) {
-                if (processorFreeTime[i] < processorFreeTime[earliestProcessor]) {
-                    earliestProcessor = i;
-                }
-            }
-            
+            int earliestProcessor = findEarliestAvailableProcessor(processorFreeTime);
             int currentTime = processorFreeTime[earliestProcessor];
             
-            // Find all tasks that have arrived by currentTime and are not yet scheduled
-            List<Integer> availableTasks = new ArrayList<>();
-            for (int i = 0; i < sortedTasks.size(); i++) {
-                if (!scheduled[i] && sortedTasks.get(i).getArrivalTime() <= currentTime) {
-                    availableTasks.add(i);
-                }
-            }
+            List<Integer> availableTasks = findAvailableTasks(sortedTasks, scheduled, currentTime);
             
-            // If no tasks are available, advance time to next task arrival
             if (availableTasks.isEmpty()) {
-                int nextArrival = Integer.MAX_VALUE;
-                for (int i = 0; i < sortedTasks.size(); i++) {
-                    if (!scheduled[i]) {
-                        nextArrival = Math.min(nextArrival, sortedTasks.get(i).getArrivalTime());
-                    }
-                }
-                processorFreeTime[earliestProcessor] = nextArrival;
+                processorFreeTime[earliestProcessor] = findNextArrivalTime(sortedTasks, scheduled);
                 continue;
             }
             
-            // Among available tasks, find the shortest one (SJF)
-            int shortestTaskIndex = availableTasks.get(0);
-            for (int taskIndex : availableTasks) {
-                Task currentTask = sortedTasks.get(taskIndex);
-                Task shortestTask = sortedTasks.get(shortestTaskIndex);
-                if (currentTask.getLength() < shortestTask.getLength()) {
-                    shortestTaskIndex = taskIndex;
-                } else if (currentTask.getLength() == shortestTask.getLength()) {
-                    // Tie-breaker: earlier arrival time (FCFS for same length)
-                    if (currentTask.getArrivalTime() < shortestTask.getArrivalTime()) {
-                        shortestTaskIndex = taskIndex;
-                    }
-                }
-            }
-            
-            Task selectedTask = sortedTasks.get(shortestTaskIndex);
-            int startTime = Math.max(selectedTask.getArrivalTime(), processorFreeTime[earliestProcessor]);
-            int endTime = (int) (startTime + selectedTask.getLength());
-            
-            ScheduledTask scheduledTask = new ScheduledTask(selectedTask, earliestProcessor, startTime, endTime);
+            int shortestTaskIndex = selectShortestTask(sortedTasks, availableTasks);
+            ScheduledTask scheduledTask = createScheduledTask(sortedTasks.get(shortestTaskIndex), 
+                                                            earliestProcessor, 
+                                                            processorFreeTime[earliestProcessor]);
             result.add(scheduledTask);
             
             // Mark task as scheduled and update processor free time
             scheduled[shortestTaskIndex] = true;
-            processorFreeTime[earliestProcessor] = endTime;
+            processorFreeTime[earliestProcessor] = scheduledTask.getEndTime();
             scheduledCount++;
         }
         
         // Sort result by start time
         result.sort((st1, st2) -> Integer.compare(st1.getStartTime(), st2.getStartTime()));
-        
         return result;
+    }
+    
+    private int findEarliestAvailableProcessor(int[] processorFreeTime) {
+        int earliest = 0;
+        for (int i = 1; i < processorFreeTime.length; i++) {
+            if (processorFreeTime[i] < processorFreeTime[earliest]) {
+                earliest = i;
+            }
+        }
+        return earliest;
+    }
+    
+    private List<Integer> findAvailableTasks(List<Task> sortedTasks, boolean[] scheduled, 
+                                             int currentTime) {
+        List<Integer> availableTasks = new ArrayList<>();
+        for (int i = 0; i < sortedTasks.size(); i++) {
+            if (!scheduled[i] && sortedTasks.get(i).getArrivalTime() <= currentTime) {
+                availableTasks.add(i);
+            }
+        }
+        return availableTasks;
+    }
+    
+    private int findNextArrivalTime(List<Task> sortedTasks, boolean[] scheduled) {
+        int nextArrival = Integer.MAX_VALUE;
+        for (int i = 0; i < sortedTasks.size(); i++) {
+            if (!scheduled[i]) {
+                nextArrival = Math.min(nextArrival, sortedTasks.get(i).getArrivalTime());
+            }
+        }
+        return nextArrival;
+    }
+    
+    private int selectShortestTask(List<Task> sortedTasks, List<Integer> availableTasks) {
+        int shortestTaskIndex = availableTasks.get(0);
+        for (int taskIndex : availableTasks) {
+            if (isTaskShorter(sortedTasks.get(taskIndex), sortedTasks.get(shortestTaskIndex))) {
+                shortestTaskIndex = taskIndex;
+            }
+        }
+        return shortestTaskIndex;
+    }
+    
+    private boolean isTaskShorter(Task task1, Task task2) {
+        if (task1.getLength() < task2.getLength()) {
+            return true;
+        }
+        if (task1.getLength() == task2.getLength()) {
+            // Tie-breaker: earlier arrival time (FCFS for same length)
+            return task1.getArrivalTime() < task2.getArrivalTime();
+        }
+        return false;
+    }
+    
+    private ScheduledTask createScheduledTask(Task task, int processorId, int processorFreeTime) {
+        int startTime = Math.max(task.getArrivalTime(), processorFreeTime);
+        int endTime = (int) (startTime + task.getLength());
+        return new ScheduledTask(task, processorId, startTime, endTime);
     }
 }

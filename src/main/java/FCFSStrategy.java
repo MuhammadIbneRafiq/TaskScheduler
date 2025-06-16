@@ -42,7 +42,8 @@ public class FCFSStrategy implements Scheduler {
             int startTime = Math.max(task.getArrivalTime(), processorFreeTime[earliestProcessor]);
             int endTime = (int) (startTime + task.getLength());
             
-            ScheduledTask scheduledTask = new ScheduledTask(task, earliestProcessor, startTime, endTime);
+            ScheduledTask scheduledTask = new ScheduledTask(task, earliestProcessor, 
+                                                            startTime, endTime);
             result.add(scheduledTask);
             
             // Update when this processor becomes free

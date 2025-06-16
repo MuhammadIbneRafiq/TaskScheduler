@@ -13,7 +13,7 @@ public class PriorityStrategy implements Scheduler {
      * A method to schedule a list of incoming tasks taking priority into account.
      * @param tasks incoming tasks (unsorted)
      * @param processors list of available processors (must contain exactly one processor)
-     * @return a list of ScheduledTasks sorted on start time based on the (Preemptive) Priority strategy.
+     * @return a list of ScheduledTasks sorted on start time based on the Priority strategy.
      * @throws IllegalArgumentException if processors.size() != 1
      */
     @Override
@@ -108,7 +108,8 @@ public class PriorityStrategy implements Scheduler {
         return nextArrival == Integer.MAX_VALUE ? currentTime + 1 : nextArrival;
     }
     
-    private int findNextEventTime(List<TaskState> taskStates, TaskState currentTask, int currentTime) {
+    private int findNextEventTime(List<TaskState> taskStates, TaskState currentTask, 
+                                  int currentTime) {
         // When current task would complete
         int taskCompletionTime = currentTime + (int) currentTask.remainingTime;
         
@@ -117,7 +118,8 @@ public class PriorityStrategy implements Scheduler {
         for (TaskState ts : taskStates) {
             if (!ts.completed && ts.task.getArrivalTime() > currentTime) {
                 if (hasHigherPriority(ts.task, currentTask.task)) {
-                    nextHigherPriorityArrival = Math.min(nextHigherPriorityArrival, ts.task.getArrivalTime());
+                    nextHigherPriorityArrival = Math.min(nextHigherPriorityArrival, 
+                                                        ts.task.getArrivalTime());
                 }
             }
         }
@@ -137,8 +139,8 @@ public class PriorityStrategy implements Scheduler {
             ScheduledTask next = scheduledTasks.get(i);
             
             // If same task and consecutive execution (no gap), merge
-            if (current.getTask().getId() == next.getTask().getId() && 
-                current.getEndTime() == next.getStartTime()) {
+            if (current.getTask().getId() == next.getTask().getId() 
+                && current.getEndTime() == next.getStartTime()) {
                 current = new ScheduledTask(current.getTask(), current.getProcessorId(), 
                                           current.getStartTime(), next.getEndTime());
             } else {
