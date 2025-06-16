@@ -19,10 +19,10 @@ public class Task implements Comparable<Task> {
     /**
      * Basic constructor for the Task class.
      * 
-     * @param id          - id of the task (must be non-negative)
-     * @param priority    - priority of the task (higher numbers = higher priority, must be non-negative)
-     * @param length      - length of the task in milliseconds (must be non-negative)
-     * @param arrivalTime - arrival time of the task (in milliseconds since start, must be non-negative)
+     * @param id          - id of the task 
+     * @param priority    - priority of the task 
+     * @param length      - length of the task in milliseconds
+     * @param arrivalTime - arrival time of the task 
      */
     public Task(int id, int priority, long length, int arrivalTime) {
         this.id = id;
